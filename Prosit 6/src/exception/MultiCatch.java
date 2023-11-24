@@ -1,27 +1,18 @@
 package exception;
 
-//Demonstrate  multiple catch statements .
+public class MultiCatch {
+    public static void main(String args[]) {
+        try {
+            int a = args.length;
+            System.out.println("No Of Arguments = " + a);
+            int b = 42 / a;
 
-import java.io.*;
-import java.lang.*;
-
-class MultiCatch{
-    public static void main (String args[]) throws ArithmeticException{
-      try{
-
-   		int a = args.length;
-   		System.out.println("No Of Arguments = " +  a);
-   		int b =  42 / a;//Could generate Divide by Zero exception.
-
-   		int c[ ] = { 1 }; //array initialized with size 1
-   		c[42] = 99;//Generate Array Out Of Bound exception.
-      }
-      catch (RuntimeException e){
-           System.out.println("Array index is out of bounds exception.");
-   	  }
-   }
-
+            int c[] = {1};
+            c[42] = 99;
+        } catch (ArithmeticException e) {
+            System.out.println("Caught an ArithmeticException: Cannot divide by zero.");
+        } catch (ArrayIndexOutOfBoundsException e) {
+            System.out.println("Caught an ArrayIndexOutOfBoundsException: Array index is out of bounds.");
+        }
+    }
 }
-
-
-
