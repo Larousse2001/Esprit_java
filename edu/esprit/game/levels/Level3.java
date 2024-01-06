@@ -45,9 +45,7 @@ public class Level3 {
 			
 	/* TO DO 6: Retourner une Map qui regroupe les nom des employ�s par salaire */
 	Map<Integer, String> mm = employees.stream()
-            						   .collect(Collectors.groupingBy(Employee::getSalary, 
-            								   						  Collectors.mapping(Employee::getName, 
-            								   						  Collectors.joining(", "))));
+            						   .collect(Collectors.toCollection(() -> new TreeSet<>(Comparator.comparing(Employee::getName))));
 	
 
 	/* TO DO 7: Retourner le  min, max,average, sum,count des salaires */
