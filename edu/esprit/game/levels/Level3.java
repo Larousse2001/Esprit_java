@@ -35,7 +35,7 @@ public class Level3 {
 
 	/* TO DO 4: Retourner une TreeSet d'employ�s (tri par nom) */
 	TreeSet<Employee> emps2 = employees.stream()
-            						   .collect(Collectors.toCollection(TreeSet::new));
+            						   .collect(Collectors.toCollection(() -> new TreeSet<>(Comparator.comparing(Employee::getName))));
 
 
 	/* TO DO 5: Retourner une Map qui regroupe les employ�s par salaire */
@@ -45,7 +45,9 @@ public class Level3 {
 			
 	/* TO DO 6: Retourner une Map qui regroupe les nom des employ�s par salaire */
 	Map<Integer, String> mm = employees.stream()
-            						   .collect(Collectors.toCollection(() -> new TreeSet<>(Comparator.comparing(Employee::getName))));
+            						   .collect(Collectors.groupingBy(Employee::getSalary, 
+            								   						  Collectors.mapping(Employee::getName, 
+            								   						  Collectors.joining(", "))));
 	
 
 	/* TO DO 7: Retourner le  min, max,average, sum,count des salaires */
